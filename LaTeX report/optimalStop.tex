@@ -1,0 +1,126 @@
+\title{Accelerated relaxation process in multi-agent traffic simulation using optimal stopping theory}
+
+\date{\today}
+
+\documentclass[10pt]{article}
+
+%%%%% required packages
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{ulem} % needed to be able to strike through with "sout"
+\usepackage{booktabs} % needed for midrule and toprule in table
+\usepackage{authblk}
+
+
+\author[1, 2]{Timofey Volotskiy\thanks{volotskiy@vsp.tu-berlin.de}}
+\author[2]{Jaroslav Smirnov \thanks{B.B@university.edu}}
+\affil[1]{Institute of urban studies and design, ITMO University}
+\affil[2]{Transport Systems Planning and Transport Telematics, Technische Universität Berlin}
+
+\usepackage{footmisc}
+%\usepackage[round]{natbib}
+
+\usepackage{geometry}
+\geometry{a4paper,left=20mm,right=20mm,top=20mm,bottom=20mm}
+
+
+%%%%% user-definded todo notes
+\definecolor{darkgreen}{rgb}{0.,0.5,0.}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+
+
+
+\parindent0pt
+\parskip0.3\baselineskip
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+	(Write abstract...)
+\end{abstract}
+
+\section{Introduction}
+While multi-agent traffic simulations are widely recognized to be applicable and adequate in finding solution to complex transportation planning solutions \cite{Flugel2014b}, they remain computationally demanding to this date \cite{Balmer2008}. Their wider adoption of those tools in transport planning practice is therefore slowed down, in particular in the real-time processing of traffic data or in the cases, where a multiple plan scenarios should be evaluated, by the the relatively long computational time, required to complete the relaxation process. 
+
+This paper presents a method to reduce both the number of iterations and total time needed to reach the convergence and stochastic user equilibrium, using optimal stopping theory. 
+In the current implementation during the relaxation phase the predefined share of agents performs replanning after each iteration until at some point the innovation strategies are turned off, and the simulation runs for a number of iteration, when agent only allowed to choose from the set of experienced plans. As pointed in \cite{Horni2016a} (Chapter 97.3.5 Transients Versus the Notion of “Learning”), the relaxation procedure can be considered either as a representation of the real life behaviour or as a plainly numerical method to reach the equilibrium. 
+
+We assume, that the behaviourally realistic way of finding the preferred route and therefore daily plan for each agent is somewhat reflects the way, 
+
+
+
+\section{Accessibility by PT as en equity metric}
+\section{Transit Network Design Problem within a microsimulation context}
+\section{Methodology and new approach}
+\section{Results}
+\section{Discussion}
+
+The introduction of autonomous vehicles will arguably have great impact on patterns of movement and will likely change the way people accomodate their wish to participate in activities.
+
+(mention some characteristics, benefits, and threats that are discussed in terms of autonomous vehicles...)
+
+Some researchers and practitioners argue that a stronger reliance of transport system on autonomous vehicles, potentially operated by for-profit organizations, might lead to new problems in terms of equity.
+
+The goal of this study is to provide insights into the changes in terms of activity participation opportunities that are available to people in a possible future transport system, which is more strongly reliant on autonomous cars.
+
+As main analysis instrument, the measure of accessibilities are used. Quantitative accessibility computations are a holistic measure that explicitly take into account the interaction between land-use and transport and evaluate an urban system from the perspective of a human that wishes to participate in activities that are spatially dispersed within that region.
+
+It takes into account both the activity opportunities available (land-use system) and the possibilities to reach their locations (transport system) and it, therefore, seen as an expressive, intuitive, and exhaustive measure to analyze policies that affect both activity participation and travel behavior.
+
+In a case study for the metropolitan area of Berlin, accessibilities to (choose one or multiple somehow representative activity types) are computed based on (1) the current public transport system and (2) a potential future supply system based on autonomous cars (... a pool of (number) autonomous cars).
+
+The analyses are conducted within MATSim, an open-source multi-agent transport simulation framework, which allows for a microscopic simulation of travel in a metropolitan region and has already been extended by modules for the simulation of the operation of autonomous vehicles as well as computations of accessibilities.
+
+\section{Data}
+
+
+\section{Methodology}
+(general description of MATSim...)
+
+We run Joschka's simulation of autonomous cars with a specific fleet size for Berlin (do we assume here that all traffic is accomodated by autonomous cars OR only that traffic that went by individual driving before)
+
+We introduce different impactful variations in demand to increase the diversity in supply reactions to accomodate that demand
+
+For each variation and each measure point (defined by the accessibility computation), we measure the waiting time until one is picked up by an autonomous car. To measure this, we query some trip (to whatever destination) from that measure point and store the resulting waiting/pick-up time. This is based on the fact (?) that this waiting/pick-up time is \textbf{independent} of the destination. As such, any other destination would have the same waiting/pick-up time at a given origin.
+
+This property is a great advantage for our analysis as it keeps the computational effort within easily handable limits.
+This property holds for most realistic non-shared autonomous vehicles services as it is also reaffirmed by the procedures of today transport network companies (TNCs), which usually do not require the user to state the destination of a queries trip to tell the user the expected time until pick-up (cite Uber somehow). The property of destination-invariant waiting/pick-up times would, however, not hold in a system of shared autonomous vehicles (SAVs), where waiting/pick-up times depend on the destination as this is crucial information to be able to 'pool' other users into a requested trip.
+
+apart from waiting/pick-up times the car travel times should be (more or less) the same as the in-vehicle times in autonomous cars. Time between drop-off from the autonomous car to the actual facility should also be roughly the same as self-driving plus walking (unless one includes parking search...).
+
+Therefore, adding the waiting/pick-up time to the car travel time, which is alsready taken into account in the accessibility computation yields the values for acccessibilities of a given service based on travelling by autonomous vehicles
+
+(continue... more technicalities...)
+
+\section{Results}
+We will likely find better accessibilities and densely populated places with many originating trips as the times to walk to and from public transport will be outperformed by generally quite low waiting/pick-up times for autonomous cars.
+
+In more remote places with less demand for trips, waiting/pick-up times will be longer such that people will in these places likely not see an improvement in accessibilities by the introduction of autonomous vehicles.
+
+(continue...)
+
+\section{Discussion}
+Today, public transport operators are usually mandated to provide a defined level of service. In Berlin, for instance, no populated location must be farther way than 500m (check if this number is correct) for a public-transport stop.
+
+In a public-transport system (which are in most places in the world publicly subsidized as such), typically higher-demand lines cross-finance lower demand lines.
+
+There is the risk that an operator of a fleet of autonomous vehicles could only serve higher-demand areas (cherry-picking), potentially cannibalizing public transport in these areas, while not accommodating the remainder of the demand in low-demand areas.
+
+To prevent such market situations, an approach might be to grant licenses in packages that include both high- and low-demand areas and, by this, force an operator of a autonomous-vehicle fleet to also serve low-demand areas.
+
+Similarly foster the integration of autonomous vehicle services with existing public transport as described in (cite here something where you, JB, discussed something like this already (assuming that you did in several places...)).
+
+\section{Conclusion}
+\bibliographystyle{unsrt}
+\bibliography{./bib/OptimalStopping}
+
+%\bibliographystyle{abbrv}
+%\bibliography{main}
+
+\end{document}
