@@ -20,6 +20,15 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>matsim</id>
+            <name>MATSim release repository</name>
+            <url>http://dl.bintray.com/matsim/matsim</url>
+        </repository>
+    </repositories>
+
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.matsim/matsim -->
