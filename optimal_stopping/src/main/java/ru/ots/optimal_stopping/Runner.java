@@ -18,7 +18,7 @@ public class Runner {
     public static void main(String[] args) {
         Config config ;
         if ( args.length==0 || args[0]=="" ) {
-            config = ConfigUtils.loadConfig( "input/config.xml" ) ;
+            config = ConfigUtils.loadConfig( "input/configKrsk.xml" ) ;
             //config.controler().setLastIteration(1);
             config.controler().setOverwriteFileSetting( OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists );
         } else {
@@ -54,7 +54,15 @@ public class Runner {
 
         //controler.addControlerListener();
 
+        removeAgentsOnPt(scenario);
         controler.run();
         System.out.println("Count of reroutes "+GenericStrategyManager.rerouteCount.get());
     }
+
+    private static void removeAgentsOnPt(Scenario scenario) {
+        AgentsOnModeRemover remover = new AgentsOnModeRemover("pt", scenario.getPopulation());
+        remover.clean();
+    }
+
+
 }
