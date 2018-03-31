@@ -6,19 +6,24 @@ import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
+import org.matsim.core.controler.events.IterationEndsEvent;
+import org.matsim.core.controler.listener.IterationEndsListener;
 import org.matsim.core.replanning.GenericStrategyManager;
 import org.matsim.core.scenario.ScenarioUtils;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Runner {
 
-    public static boolean disableOnFullPlanStack = true;
-    public static void main(String[] args) {
+    public static boolean disableOnFullPlanStack = false;
+    public static void main(String[] args) throws FileNotFoundException {
         Config config ;
-        if ( args.length==0 || args[0]=="" ) {
-            config = ConfigUtils.loadConfig( "input/configKrsk.xml" ) ;
+        if ( args.length==0 || args[0].equals("") ) {
+            config = ConfigUtils.loadConfig( "input/config.xml" ) ;
             //config.controler().setLastIteration(1);
             config.controler().setOverwriteFileSetting( OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists );
         } else {
@@ -55,8 +60,16 @@ public class Runner {
         //controler.addControlerListener();
 
         removeAgentsOnPt(scenario);
+        PrintWriter printWriter = new PrintWriter(new Date().getTime()+"reroute.csv");
+        controler.addControlerListener(new IterationEndsListener() {
+            @Override
+            public void notifyIterationEnds(IterationEndsEvent iterationEndsEvent) {
+                printWriter.println(String.format("%d;%d",iterationEndsEvent.getIteration(), GenericStrategyManager.rerouteCount.get()));
+            }
+        });
         controler.run();
         System.out.println("Count of reroutes "+GenericStrategyManager.rerouteCount.get());
+        printWriter.close();
     }
 
     private static void removeAgentsOnPt(Scenario scenario) {
